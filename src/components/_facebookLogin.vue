@@ -12,6 +12,27 @@ export default {
     hello.init({
       facebook: '1314748098607534'
     })
+  },
+  methods: {
+    facebookLogin: function(){
+      var me = this
+      hello.login('facebook', {
+        scope: 'email,user_photos'
+      })
+      .then(() => {
+        me.$root.authResponse = hello('facebook').getAuthResponse()
+        console.log('aaaaa')
+        return me.$http.get("https://graph.facebook.com/v2.8/me", {
+          params: {
+            fields: "id,name,email",
+            access_token: me.$root.authResponse.access_token
+          }
+        })
+      })
+      .then((result) => {
+        me.$root.me = result.body
+      })
+    }
   }
 }
 </script>
