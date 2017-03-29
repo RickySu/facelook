@@ -12,8 +12,24 @@ export default {
     hello.init({
       facebook: '1314748098607534'
     })
+
+    this.$root.me = this.loadSession('me')
+    if(this.$root.me != null){
+      this.$root.authResponse = this.loadSession('authResponse')
+    }
+
   },
   methods: {
+    storeSession: function(key, value){
+      window.sessionStorage.setItem(key, JSON.stringify(value))
+    },
+    loadSession: function(key){
+      var value = window.sessionStorage.getItem(key)
+      if(value === void 0){
+        return null
+      }
+      return JSON.parse(value)
+    },
     facebookLogin: function(){
       var me = this
       hello.login('facebook', {
@@ -21,6 +37,7 @@ export default {
       })
       .then(() => {
         me.$root.authResponse = hello('facebook').getAuthResponse()
+        me.storeSession('authResponse', me.$root.authResponse)
         return me.$http.get("https://graph.facebook.com/v2.8/me", {
           params: {
             fields: "id,name,email",
@@ -30,6 +47,7 @@ export default {
       })
       .then((result) => {
         me.$root.me = result.body
+        me.storeSession('me', me.$root.me)
       })
     }
   }

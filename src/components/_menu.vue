@@ -19,6 +19,8 @@ export default{
     signOut: function(){
       this.$root.me = null
       this.$root.authResponse = null
+      window.sessionStorage.removeItem('me')
+      window.sessionStorage.removeItem('authResponse')
     }
   }
 }
