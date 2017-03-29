@@ -21,7 +21,6 @@ export default {
       })
       .then(() => {
         me.$root.authResponse = hello('facebook').getAuthResponse()
-        console.log('aaaaa')
         return me.$http.get("https://graph.facebook.com/v2.8/me", {
           params: {
             fields: "id,name,email",
