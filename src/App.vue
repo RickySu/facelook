@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <com-facebook-login></com-facebook-login>
-    <div class="row">
+    <com-facebook-login v-if="!isLogin"></com-facebook-login>
+    <div class="row" v-if="isLogin">
       <com-menu class="col-xs-3"></com-menu>
       <router-view class="col-xs-9"></router-view>
     </div>
@@ -16,6 +16,11 @@ import comMenu from '@/components/_menu'
 import comFacebookLogin from '@/components/_facebookLogin'
 export default {
   name: 'app',
+  computed: {
+    isLogin: function(){
+      return this.$root.me != null
+    }
+  },
   components: {
     comMenu,
     comFacebookLogin
