@@ -12,6 +12,21 @@
   </div>
 </template>
 
+<style scoped>
+  .thumbnail {
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+  }
+  .thumbnail .caption {
+    bottom: 0;
+    position: absolute;
+    background: white;
+    width: 100%;
+
+  }
+</style>
+
 <script>
 import comImage from '@/components/_image'
 export default{
