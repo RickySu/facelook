@@ -46,27 +46,24 @@ export default{
       }
     })
     .then((result) => {
-      self.photos = self.photos.concat(result.body.data)
-      if(typeof result.body.paging.next == 'undefined'){
-        self.next = null
-      }
-      else{
-        self.next = result.body.paging.next
-      }
+      self.appendPhotos.call(self, result)
     })
   },
   methods: {
+    appendPhotos: function(result){
+      this.photos = this.photos.concat(result.body.data)
+      if(typeof result.body.paging.next == 'undefined'){
+        this.next = null
+      }
+      else{
+        this.next = result.body.paging.next
+      }
+    },
     loadMore: function(){
       var self = this
       this.$http.get(this.next)
       .then((result) => {
-        self.photos = self.photos.concat(result.body.data)
-        if(typeof result.body.paging.next == 'undefined'){
-          self.next = null
-        }
-        else{
-          self.next = result.body.paging.next
-        }
+        self.appendPhotos.call(this, result)
       })
     }
   }
