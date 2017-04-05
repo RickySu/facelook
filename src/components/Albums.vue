@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-xs-6 col-md-3" v-for="album in albums">
       <a class="thumbnail">
-        <img :src="'https://graph.facebook.com/v2.8/' + album.id + '/picture?access_token=' + $root.authResponse.access_token" />
+        <com-image :id="album.id"></com-image>
         <div class="caption">
           <h4>{{album.name}}</h4>
           <p>{{album.count}} 張照片</p>
@@ -13,7 +13,11 @@
 </template>
 
 <script>
+import comImage from '@/components/_image'
 export default{
+  components: {
+    comImage
+  },
   data: () => {
     return {
       albums: []
