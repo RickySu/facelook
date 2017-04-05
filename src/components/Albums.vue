@@ -1,13 +1,13 @@
 <template>
   <div class="row">
     <div class="col-xs-6 col-md-3" v-for="album in albums">
-      <a class="thumbnail">
+      <router-link class="thumbnail" :to="{name: 'Album', params: {id: album.id}}">
         <com-image :id="album.id"></com-image>
         <div class="caption">
           <h4>{{album.name}}</h4>
           <p>{{album.count}} 張照片</p>
         </div>
-      </a>
+      </router-link>
     </div>
   </div>
 </template>

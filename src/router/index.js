@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Main from '@/components/Main'
 import Albums from '@/components/Albums'
+import Album from '@/components/Album'
 
 Vue.use(Router)
 
@@ -17,6 +18,11 @@ export default new Router({
       path: '/albums',
       name: 'Albums',
       component: Albums
+    },
+    {
+      path: '/album/:id',
+      name: 'Album',
+      component: Album
     }
   ]
 })
