@@ -1,6 +1,7 @@
 <template>
   <div class="list-group">
     <router-link class="list-group-item" to=""><img :src="avatar" /> {{username}}</router-link>
+    <router-link class="list-group-item" :to="{name: 'Albums'}"><i class="fa fa-photo"></i> 相簿</router-link>
     <a @click.prevent="signOut" href="" class="list-group-item"><i class="fa fa-sign-out"></i> 登出</a>
   </div>
 </template>
