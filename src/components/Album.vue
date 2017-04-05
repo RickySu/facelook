@@ -8,6 +8,7 @@
         <com-image :id="photo.id" />
       </div>
     </div>
+    <button @click.prevent="loadMore" v-if="hasNext" class="btn btn-primary btn-lg col-xs-12">載入更多</button>
   </div>
 </template>
 
@@ -19,8 +20,14 @@ export default{
   },
   data: () => {
     return {
+      next: null,
       albumName: null,
       photos: []
+    }
+  },
+  computed: {
+    hasNext: function () {
+      return this.next
     }
   },
   created: function(){
@@ -39,8 +46,29 @@ export default{
       }
     })
     .then((result) => {
-      self.photos = result.body.data
+      self.photos = self.photos.concat(result.body.data)
+      if(typeof result.body.paging.next == 'undefined'){
+        self.next = null
+      }
+      else{
+        self.next = result.body.paging.next
+      }
     })
+  },
+  methods: {
+    loadMore: function(){
+      var self = this
+      this.$http.get(this.next)
+      .then((result) => {
+        self.photos = self.photos.concat(result.body.data)
+        if(typeof result.body.paging.next == 'undefined'){
+          self.next = null
+        }
+        else{
+          self.next = result.body.paging.next
+        }
+      })
+    }
   }
 }
 </script>
