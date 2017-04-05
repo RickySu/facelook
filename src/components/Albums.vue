@@ -1,4 +1,15 @@
-<template></template>
+<template>
+  <div class="row">
+    <div class="col-xs-6 col-md-3" v-for="album in albums">
+      <a class="thumbnail">
+        <div class="caption">
+          <h4>{{album.name}}</h4>
+          <p>{{album.count}} 張照片</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</template>
 
 <script>
 export default{
@@ -16,7 +27,7 @@ export default{
       }
     })
     .then((result) => {
-      me.albums = result.body.data
+      self.albums = result.body.data
     })
   }
 }
