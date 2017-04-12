@@ -33,6 +33,7 @@ export default{
       .then((result) => {
         self.posts = result.body.data
       })
+      return true
     }
   },
   data: () => {
@@ -40,7 +41,11 @@ export default{
       posts: []
     }
   },
+  beforeDestroy: function(){
+    this.$root.$off('sync.posts', this.readPosts)
+  },
   created: function () {
+    this.$root.$on('sync.post', this.readPosts)
     this.readPosts()
   }
 }

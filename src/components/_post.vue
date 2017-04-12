@@ -36,6 +36,7 @@ export default{
       )
       .then(() => {
         self.post = null
+        self.$root.$emit('sync.posts')
       })
     }
   }
