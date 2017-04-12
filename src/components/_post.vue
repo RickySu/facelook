@@ -22,7 +22,21 @@ export default{
   methods: {
     send: function(){
       //api reference https://developers.facebook.com/docs/graph-api/reference/v2.8/user/feed
-
+      var self = this
+      this.$http.post("https://graph.facebook.com/v2.8/me/feed",
+        {
+          message: this.message
+        },
+        {
+          emulateJSON: false,
+          params:  {
+            access_token: this.$root.authResponse.access_token
+          }
+        }
+      )
+      .then(() => {
+        self.post = null
+      })
     }
   }
 }
