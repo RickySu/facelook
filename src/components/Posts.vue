@@ -1,6 +1,6 @@
 <template>
   <div>
-    <com-post></com-post>
+    <com-post v-on:sync-posts="readPosts"></com-post>
     <div class="panel panel-default" v-for="post in posts">
       <div class="panel-heading">{{post.created_time|moment('YYYY 年 M 月 D 日 HH:mm:ss')}}</div>
       <div class="panel-body">
@@ -41,11 +41,7 @@ export default{
       posts: []
     }
   },
-  beforeDestroy: function(){
-    this.$root.$off('sync.posts', this.readPosts)
-  },
   created: function () {
-    this.$root.$on('sync.post', this.readPosts)
     this.readPosts()
   }
 }
