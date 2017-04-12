@@ -22,6 +22,17 @@ export default{
         return post.story
       }
       return post.message
+    },
+    readPosts: function(){
+      var self = this
+      this.$http.get('https://graph.facebook.com/v2.8/me/posts', {
+        params:  {
+          access_token: this.$root.authResponse.access_token
+        }
+      })
+      .then((result) => {
+        self.posts = result.body.data
+      })
     }
   },
   data: () => {
@@ -30,15 +41,7 @@ export default{
     }
   },
   created: function () {
-    var self = this
-    this.$http.get('https://graph.facebook.com/v2.8/me/posts', {
-      params:  {
-        access_token: this.$root.authResponse.access_token
-      }
-    })
-    .then((result) => {
-      self.posts = result.body.data
-    })
+    this.readPosts()
   }
 }
 </script>
