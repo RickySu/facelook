@@ -21,7 +21,8 @@ export default{
   },
   methods: {
     send: function(){
-      console.log(this.message)
+      //api reference https://developers.facebook.com/docs/graph-api/reference/v2.8/user/feed
+
     }
   }
 }

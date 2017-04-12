@@ -33,7 +33,7 @@ export default {
     facebookLogin: function(){
       var me = this
       hello.login('facebook', {
-        scope: 'email,user_photos,user_posts'
+        scope: 'email,user_photos,user_posts,publish_actions'
       })
       .then(() => {
         me.$root.authResponse = hello('facebook').getAuthResponse()
