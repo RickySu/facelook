@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Main from '@/components/Main'
 import Albums from '@/components/Albums'
 import Album from '@/components/Album'
+import Posts from '@/components/Posts'
 
 Vue.use(Router)
 
@@ -18,6 +19,11 @@ export default new Router({
       path: '/albums',
       name: 'Albums',
       component: Albums
+    },
+    {
+      path: '/posts',
+      name: 'Posts',
+      component: Posts
     },
     {
       path: '/album/:id',
