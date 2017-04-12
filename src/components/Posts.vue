@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="panel panel-default" v-for="post in posts">
-      <div class="panel-heading">{{post.created_time}}</div>
+      <div class="panel-heading">{{post.created_time|moment('YYYY 年 M 月 D 日 HH:mm:ss')}}</div>
       <div class="panel-body">
         {{getMessage(post)}}
       </div>
