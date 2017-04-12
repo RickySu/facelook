@@ -1,5 +1,6 @@
 <template>
   <div>
+    <com-post></com-post>
     <div class="panel panel-default" v-for="post in posts">
       <div class="panel-heading">{{post.created_time|moment('YYYY 年 M 月 D 日 HH:mm:ss')}}</div>
       <div class="panel-body">
@@ -10,7 +11,11 @@
 </template>
 
 <script>
+import comPost from '@/components/_post.vue'
 export default{
+  components:{
+    comPost
+  },
   methods: {
     getMessage: function (post) {
       if (typeof post.story != 'undefined') {
