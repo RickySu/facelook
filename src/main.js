@@ -4,7 +4,9 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import vueResource from 'vue-resource'
+import vueMonent from 'vue-moment'
 
+Vue.use(vueMonent)
 Vue.use(vueResource)
 Vue.config.productionTip = false
 
