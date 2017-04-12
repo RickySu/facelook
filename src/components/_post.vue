@@ -6,8 +6,18 @@
     </div>
     <div class="form-group">
       <div class="pull-right">
-        <button type="submit" class="btn btn-primary btn-lg">送出</button>
+        <button @click.prevent="send" type="submit" class="btn btn-primary btn-lg">送出</button>
       </div>
     </div>
   </form>
 </template>
+
+<script>
+export default{
+  methods: {
+    send: function(){
+      
+    }
+  }
+}
+</script>
