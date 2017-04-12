@@ -3,7 +3,7 @@
     <div class="panel panel-default" v-for="post in posts">
       <div class="panel-heading">{{post.created_time}}</div>
       <div class="panel-body">
-        {{post.message}}
+        {{getMessage(post)}}
       </div>
     </div>
   </div>
@@ -11,6 +11,14 @@
 
 <script>
 export default{
+  methods: {
+    getMessage: function (post) {
+      if (typeof post.story != 'undefined') {
+        return post.story
+      }
+      return post.message
+    }
+  },
   data: () => {
     return {
       posts: []
